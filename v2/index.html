@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta id="viewport-meta" name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Wayson Auto Sdn Bhd | Accident Repair, Body & Paint, Insurance Claims — Dengkil, Selangor</title>
+  <meta name="description" content="Wayson Auto Sdn Bhd (威勝汽車) — accident repair, body & paint, auto welding, windscreen, electrical, engine work and full insurance-claim handling in Dengkil. Serving Sepang, Putrajaya, Cyberjaya, Cyber South & surrounding areas. WhatsApp us for a free quote." />
+  <meta name="theme-color" content="#0B1526" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Wayson Auto Sdn Bhd | Accident Repair & Insurance Claims, Dengkil" />
+  <meta property="og:description" content="Accident repair, body & paint, and end-to-end insurance claims in Dengkil, Selangor. Moving Rides. Relieving Worries. Restoring Confidence." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="../assets/storefront.jpg" />
+
+  <!-- Favicon: inline SVG of the Wayson Auto gold "W" mark -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='48'%20fill='%230B1526'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='45'%20fill='none'%20stroke='%23F59E0B'%20stroke-width='5'/%3E%3Cpath%20d='M24,33L36,69L50,35L64,69L76,33'%20fill='none'%20stroke='%23F59E0B'%20stroke-width='9'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome via CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Google Fonts: Space Grotesk (display headings) + Inter (body) for a modern, premium feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!--
+    Brand identity (kept from the official Wayson Auto logo + signboard):
+      • Deep NAVY base (#0B1526 / #15233F)
+      • WHITE / light text
+      • Warm ORANGE–GOLD accent (#F59E0B → #F97316) from the gold "W" logo
+      • WhatsApp green is reserved ONLY for WhatsApp actions
+  -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              DEFAULT: '#15233F',
+              deep:    '#0B1526',
+              raised:  '#1B2C4D', // raised cards on dark
+            },
+            gold:   { DEFAULT: '#F59E0B', soft: '#FBBF24' },
+            orange: { DEFAULT: '#F97316', deep: '#EA580C' }, // deep = accessible on white
+            accent: { DEFAULT: '#16A34A', dark: '#15803D', brand: '#25D366' }, // WhatsApp only
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            body:    ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+    section[id] { scroll-margin-top: 5.5rem; }
+
+    /* Warm orange→gold gradient text utility */
+    .text-gradient {
+      background: linear-gradient(100deg, #FBBF24 0%, #F97316 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+
+    /* Premium hero: animated gradient glow blobs over the navy / photo backdrop */
+    .hero-bg {
+      background-color: #0B1526;
+      background-image:
+        linear-gradient(to right, rgba(11,21,38,0.94), rgba(11,21,38,0.70)),
+        url('../assets/storefront.jpg');
+      background-size: cover; background-position: center;
+    }
+    .glow {
+      position: absolute; border-radius: 9999px; filter: blur(70px); opacity: 0.5;
+      animation: float 14s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%     { transform: translate(20px,-24px) scale(1.12); }
+    }
+
+    /* Scroll-reveal animation */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* Workshop gallery placeholder texture */
+    .ph-tile {
+      background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 12px, rgba(255,255,255,0.06) 12px 24px),
+        #1B2C4D;
+    }
+
+    /* WhatsApp FAB pulse */
+    @keyframes fab-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); }
+      70% { box-shadow: 0 0 0 16px rgba(37,211,102,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+    .fab-pulse { animation: fab-pulse 2.2s infinite; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .glow, .fab-pulse { animation: none; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-navy-deep text-slate-200 antialiased pb-16 lg:pb-0">
+
+  <a href="#hero" class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-3 focus:left-3 focus:bg-white focus:text-navy focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg">Skip to main content</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-navy-deep/90 backdrop-blur border-b border-white/10">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Primary">
+      <div class="flex h-16 sm:h-20 items-center justify-between">
+        <a href="#hero" class="flex items-center gap-3 text-white" aria-label="Wayson Auto home">
+          <svg viewBox="0 0 100 100" class="h-11 w-11 shrink-0" role="img" aria-label="Wayson Auto logo">
+            <circle cx="50" cy="50" r="48" fill="#0B1526" />
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#F59E0B" stroke-width="4" />
+            <path d="M24 33 L36 69 L50 35 L64 69 L76 33" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
+          </svg>
+          <span class="leading-tight">
+            <span class="block font-display font-bold text-lg sm:text-xl tracking-tight">Wayson Auto</span>
+            <span class="block text-[11px] sm:text-xs text-gold/90 -mt-0.5 tracking-wide">Bengkel Kereta · Body &amp; Paint</span>
+          </span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+          <li><a href="#services"  class="hover:text-white transition-colors">Services</a></li>
+          <li><a href="#why"       class="hover:text-white transition-colors">Why Us</a></li>
+          <li><a href="#claims"    class="hover:text-white transition-colors">Insurance Claims</a></li>
+          <li><a href="#gallery"   class="hover:text-white transition-colors">Workshop</a></li>
+          <li><a href="#reviews"   class="hover:text-white transition-colors">Reviews</a></li>
+          <li><a href="#location"  class="hover:text-white transition-colors">Location</a></li>
+        </ul>
+
+        <div class="flex items-center gap-2">
+          <a href="https://wa.me/60142321939?text=Hi%20Wayson%20Auto,%20I%20would%20like%20to%20inquire%20about%20my%20car"
+             target="_blank" rel="noopener noreferrer"
+             class="hidden sm:inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:bg-accent-dark transition-colors cursor-pointer">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+          </a>
+          <button id="menu-toggle" type="button" class="lg:hidden grid place-items-center h-11 w-11 rounded-lg text-white hover:bg-white/10 transition-colors cursor-pointer"
+                  aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+            <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-white/10">
+      <ul class="px-4 py-4 space-y-1 text-base font-medium text-slate-200">
+        <li><a href="#services" class="block rounded-lg px-3 py-2.5 hover:bg-white/10">Services</a></li>
+        <li><a href="#why"      class="block rounded-lg px-3 py-2.5 hover:bg-white/10">Why Us</a></li>
+        <li><a href="#claims"   class="block rounded-lg px-3 py-2.5 hover:bg-white/10">Insurance Claims</a></li>
+        <li><a href="#gallery"  class="block rounded-lg px-3 py-2.5 hover:bg-white/10">Workshop</a></li>
+        <li><a href="#reviews"  class="block rounded-lg px-3 py-2.5 hover:bg-white/10">Reviews</a></li>
+        <li><a href="#location" class="block rounded-lg px-3 py-2.5 hover:bg-white/10">Location</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section id="hero" class="relative overflow-hidden hero-bg text-white">
+      <!-- Animated gradient glows -->
+      <span class="glow bg-orange/40 h-72 w-72 -top-16 -right-10" aria-hidden="true"></span>
+      <span class="glow bg-gold/30 h-64 w-64 bottom-0 left-1/4" style="animation-delay:-6s" aria-hidden="true"></span>
+
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
+        <div class="max-w-3xl">
+          <p class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium ring-1 ring-white/15">
+            <span class="h-2 w-2 rounded-full bg-accent-brand"></span>
+            Accident Repair · Body &amp; Paint · Insurance Claims
+          </p>
+
+          <h1 class="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
+            <span class="text-gradient">WAYSON AUTO SDN. BHD.</span><br class="hidden sm:block" />
+            Premium Car Repair &amp; Accident Specialists
+          </h1>
+
+          <p class="mt-5 font-display text-base sm:text-lg font-medium tracking-wide text-gold">
+            Moving Rides. Relieving Worries. Restoring Confidence.
+          </p>
+
+          <p class="mt-5 text-lg text-slate-200 leading-relaxed max-w-2xl">
+            From dents and collision damage to full insurance-claim handling — trusted bodywork,
+            paint and mechanical repairs serving <span class="text-white font-semibold">Sepang, Putrajaya,
+            Cyberjaya, Cyber South, Dengkil</span> &amp; surrounding areas.
+          </p>
+
+          <!-- Rating badge -->
+          <div class="mt-6 inline-flex items-center gap-3 rounded-2xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+            <i class="fa-brands fa-google text-lg" aria-hidden="true"></i>
+            <span class="text-gold text-lg" role="img" aria-label="4.8 out of 5 stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+            </span>
+            <span class="text-sm"><strong class="text-white">4.8</strong> · 81 Google reviews</span>
+          </div>
+
+          <!-- CTAs -->
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="https://wa.me/60142321939?text=Hi%20Wayson%20Auto,%20I%20would%20like%20to%20inquire%20about%20my%20car"
+               target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-white shadow-xl hover:bg-accent-dark transition-colors cursor-pointer">
+              <i class="fa-brands fa-whatsapp text-lg"></i> Get a Free Quote
+            </a>
+            <a href="tel:+60142321939"
+               class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-base font-semibold text-navy shadow-xl hover:bg-slate-100 transition-colors cursor-pointer">
+              <i class="fa-solid fa-phone"></i> Call 014-232 1939
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick stat strip -->
+    <section class="bg-navy border-y border-white/10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center reveal">
+        <div><p class="font-display text-3xl sm:text-4xl font-bold text-gradient"><span data-count="4.8" data-decimals="1">0</span></p><p class="mt-1 text-sm text-slate-400">Google rating</p></div>
+        <div><p class="font-display text-3xl sm:text-4xl font-bold text-gradient"><span data-count="81">0</span>+</p><p class="mt-1 text-sm text-slate-400">Google reviews</p></div>
+        <div><p class="font-display text-3xl sm:text-4xl font-bold text-gradient">2021</p><p class="mt-1 text-sm text-slate-400">Established</p></div>
+        <div><p class="font-display text-3xl sm:text-4xl font-bold text-gradient"><span data-count="5">0</span></p><p class="mt-1 text-sm text-slate-400">Areas served</p></div>
+      </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services" class="py-20 sm:py-24 bg-navy-deep">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl reveal">
+          <span class="text-sm font-semibold uppercase tracking-wider text-orange">What we do</span>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl font-bold text-white">Specialist repairs, done properly</h2>
+          <p class="mt-4 text-lg text-slate-400">Wayson Auto is a body, paint and accident-repair workshop — backed by full mechanical and insurance-claim support.</p>
+        </div>
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Each card: verified service from the official Facebook business profile -->
+          <article class="reveal group rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10 hover:ring-orange/50 hover:-translate-y-1 transition-all duration-200">
+            <span class="grid place-items-center h-14 w-14 rounded-xl bg-gradient-to-br from-gold to-orange text-navy-deep"><i class="fa-solid fa-car-burst text-2xl"></i></span>
+            <h3 class="mt-5 font-display text-xl font-semibold text-white">Accident Repair</h3>
+            <p class="mt-2 text-slate-400">Collision and accident damage restored to a safe, factory-quality finish.</p>
+          </article>
+          <article class="reveal group rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10 hover:ring-orange/50 hover:-translate-y-1 transition-all duration-200">
+            <span class="grid place-items-center h-14 w-14 rounded-xl bg-gradient-to-br from-gold to-orange text-navy-deep"><i class="fa-solid fa-spray-can-sparkles text-2xl"></i></span>
+            <h3 class="mt-5 font-display text-xl font-semibold text-white">Body &amp; Paint</h3>
+            <p class="mt-2 text-slate-400">Dent removal, scratch repair, panel respray and full body refinishing.</p>
+          </article>
+          <article class="reveal group rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10 hover:ring-orange/50 hover:-translate-y-1 transition-all duration-200">
+            <span class="grid place-items-center h-14 w-14 rounded-xl bg-gradient-to-br from-gold to-orange text-navy-deep"><i class="fa-solid fa-file-shield text-2xl"></i></span>
+            <h3 class="mt-5 font-display text-xl font-semibold text-white">Insurance Claims</h3>
+            <p class="mt-2 text-slate-400">End-to-end accident motor insurance claim handling and insurer coordination.</p>
+          </article>
+          <article class="reveal group rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10 hover:ring-orange/50 hover:-translate-y-1 transition-all duration-200">
+            <span class="grid place-items-center h-14 w-14 rounded-xl bg-gradient-to-br from-gold to-orange text-navy-deep"><i class="fa-solid fa-fire-flame-curved text-2xl"></i></span>
+            <h3 class="mt-5 font-display text-xl font-semibold text-white">Auto Body Welding</h3>
+            <p class="mt-2 text-slate-400">Structural and panel welding handled by experienced technicians.</p>
+          </article>
+          <article class="reveal group rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10 hover:ring-orange/50 hover:-translate-y-1 transition-all duration-200">
+            <span class="grid place-items-center h-14 w-14 rounded-xl bg-gradient-to-br from-gold to-orange text-navy-deep"><i class="fa-solid fa-car-side text-2xl"></i></span>
+            <h3 class="mt-5 font-display text-xl font-semibold text-white">Windscreen Replacement</h3>
+            <p class="mt-2 text-slate-400">Cracked or shattered windscreen removal and replacement.</p>
+          </article>
+          <article class="reveal group rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10 hover:ring-orange/50 hover:-translate-y-1 transition-all duration-200">
+            <span class="grid place-items-center h-14 w-14 rounded-xl bg-gradient-to-br from-gold to-orange text-navy-deep"><i class="fa-solid fa-bolt text-2xl"></i></span>
+            <h3 class="mt-5 font-display text-xl font-semibold text-white">Electrical Repairs</h3>
+            <p class="mt-2 text-slate-400">Diagnosis and repair of vehicle electrical and wiring systems.</p>
+          </article>
+          <article class="reveal group rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10 hover:ring-orange/50 hover:-translate-y-1 transition-all duration-200">
+            <span class="grid place-items-center h-14 w-14 rounded-xl bg-gradient-to-br from-gold to-orange text-navy-deep"><i class="fa-solid fa-gears text-2xl"></i></span>
+            <h3 class="mt-5 font-display text-xl font-semibold text-white">Engine &amp; Parts</h3>
+            <p class="mt-2 text-slate-400">Engine parts replacement and mechanical repair work.</p>
+          </article>
+          <article class="reveal group rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10 hover:ring-orange/50 hover:-translate-y-1 transition-all duration-200">
+            <span class="grid place-items-center h-14 w-14 rounded-xl bg-gradient-to-br from-gold to-orange text-navy-deep"><i class="fa-solid fa-screwdriver-wrench text-2xl"></i></span>
+            <h3 class="mt-5 font-display text-xl font-semibold text-white">Periodic Service</h3>
+            <p class="mt-2 text-slate-400">Annual servicing and routine maintenance to keep you road-ready.</p>
+          </article>
+          <article class="reveal group rounded-2xl bg-gradient-to-br from-gold to-orange p-7 text-navy-deep flex flex-col justify-between">
+            <div>
+              <span class="grid place-items-center h-14 w-14 rounded-xl bg-navy-deep/15"><i class="fa-brands fa-whatsapp text-2xl"></i></span>
+              <h3 class="mt-5 font-display text-xl font-bold">Something else?</h3>
+              <p class="mt-2 font-medium text-navy-deep/80">Tell us what your car needs — we'll advise honestly.</p>
+            </div>
+            <a href="https://wa.me/60142321939?text=Hi%20Wayson%20Auto,%20I%20would%20like%20to%20inquire%20about%20my%20car" target="_blank" rel="noopener noreferrer"
+               class="mt-5 inline-flex items-center gap-2 font-bold underline decoration-2 underline-offset-4 cursor-pointer">Ask on WhatsApp <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WHY CHOOSE US ===================== -->
+    <section id="why" class="py-20 sm:py-24 bg-navy">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl reveal">
+          <span class="text-sm font-semibold uppercase tracking-wider text-orange">Why customers choose us</span>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl font-bold text-white">Trusted with the repairs that matter most</h2>
+        </div>
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10">
+            <i class="fa-solid fa-star text-2xl text-gold"></i>
+            <h3 class="mt-4 font-display text-lg font-semibold text-white">4.8★ on Google</h3>
+            <p class="mt-2 text-slate-400">Rated 4.8 out of 5 across 81 verified Google reviews.</p>
+          </div>
+          <div class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10">
+            <i class="fa-solid fa-file-shield text-2xl text-gold"></i>
+            <h3 class="mt-4 font-display text-lg font-semibold text-white">Insurance-claim support</h3>
+            <p class="mt-2 text-slate-400">We guide you through the whole accident-claim process, end to end.</p>
+          </div>
+          <div class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10">
+            <i class="fa-solid fa-spray-can-sparkles text-2xl text-gold"></i>
+            <h3 class="mt-4 font-display text-lg font-semibold text-white">Body &amp; paint specialists</h3>
+            <p class="mt-2 text-slate-400">Focused expertise in collision, bodywork and refinishing.</p>
+          </div>
+          <div class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10">
+            <i class="fa-solid fa-handshake-angle text-2xl text-gold"></i>
+            <h3 class="mt-4 font-display text-lg font-semibold text-white">Honest, clear advice</h3>
+            <p class="mt-2 text-slate-400">We explain what's needed before any work begins — no surprises.</p>
+          </div>
+          <div class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10">
+            <i class="fa-solid fa-location-dot text-2xl text-gold"></i>
+            <h3 class="mt-4 font-display text-lg font-semibold text-white">Local coverage</h3>
+            <p class="mt-2 text-slate-400">Serving Sepang, Putrajaya, Cyberjaya, Cyber South, Dengkil &amp; nearby.</p>
+          </div>
+          <div class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10">
+            <i class="fa-solid fa-calendar-check text-2xl text-gold"></i>
+            <h3 class="mt-4 font-display text-lg font-semibold text-white">Established 2021</h3>
+            <p class="mt-2 text-slate-400">A registered Sdn Bhd workshop (202101030720 / 1431020-W).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== INSURANCE CLAIMS PROCESS ===================== -->
+    <section id="claims" class="py-20 sm:py-24 bg-navy-deep relative overflow-hidden">
+      <span class="glow bg-orange/20 h-72 w-72 -bottom-20 -left-10" aria-hidden="true"></span>
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl reveal">
+          <span class="text-sm font-semibold uppercase tracking-wider text-orange">Accident &amp; insurance claims</span>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl font-bold text-white">A simple claim process, handled for you</h2>
+          <p class="mt-4 text-lg text-slate-400">Been in an accident? Here's how we make it stress-free.</p>
+        </div>
+
+        <!-- 5-step process -->
+        <ol class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <li class="reveal rounded-2xl bg-navy-raised p-6 ring-1 ring-white/10">
+            <span class="font-display text-3xl font-bold text-gradient">01</span>
+            <h3 class="mt-3 font-semibold text-white">Contact us</h3>
+            <p class="mt-1 text-sm text-slate-400">Call or WhatsApp us right after the accident.</p>
+          </li>
+          <li class="reveal rounded-2xl bg-navy-raised p-6 ring-1 ring-white/10">
+            <span class="font-display text-3xl font-bold text-gradient">02</span>
+            <h3 class="mt-3 font-semibold text-white">Inspection &amp; quote</h3>
+            <p class="mt-1 text-sm text-slate-400">We assess the damage and prepare a quotation.</p>
+          </li>
+          <li class="reveal rounded-2xl bg-navy-raised p-6 ring-1 ring-white/10">
+            <span class="font-display text-3xl font-bold text-gradient">03</span>
+            <h3 class="mt-3 font-semibold text-white">Documentation</h3>
+            <p class="mt-1 text-sm text-slate-400">We help with paperwork and coordinate with your insurer.</p>
+          </li>
+          <li class="reveal rounded-2xl bg-navy-raised p-6 ring-1 ring-white/10">
+            <span class="font-display text-3xl font-bold text-gradient">04</span>
+            <h3 class="mt-3 font-semibold text-white">Repair</h3>
+            <p class="mt-1 text-sm text-slate-400">Our team carries out the approved repair work.</p>
+          </li>
+          <li class="reveal rounded-2xl bg-navy-raised p-6 ring-1 ring-white/10">
+            <span class="font-display text-3xl font-bold text-gradient">05</span>
+            <h3 class="mt-3 font-semibold text-white">Collection</h3>
+            <p class="mt-1 text-sm text-slate-400">Collect your car, restored and road-ready.</p>
+          </li>
+        </ol>
+
+        <!-- Documents checklist + CTA -->
+        <div class="mt-8 grid lg:grid-cols-2 gap-6 items-start">
+          <div class="reveal rounded-2xl bg-white text-navy p-8 ring-1 ring-white/10">
+            <h3 class="font-display text-lg font-bold flex items-center gap-3"><i class="fa-solid fa-clipboard-check text-orange-deep"></i> Documents Checklist</h3>
+            <ul class="mt-5 grid sm:grid-cols-2 gap-x-6 gap-y-3 text-slate-700">
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-orange-deep"></i><span>Police Report</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-orange-deep"></i><span>Owner's NRIC &amp; License</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-orange-deep"></i><span>Driver's NRIC &amp; License</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-orange-deep"></i><span>Vehicle Ownership Certificate (VOC)</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-orange-deep"></i><span>Insurance Policy / Cover Note</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-orange-deep"></i><span>Accident Scene / Police Photos</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-orange-deep"></i><span>Business Registration <span class="text-slate-500">(company vehicles)</span></span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-orange-deep"></i><span>GDL / PSV License <span class="text-slate-500">(commercial vehicles)</span></span></li>
+            </ul>
+          </div>
+          <div class="reveal rounded-2xl bg-navy-raised p-8 ring-1 ring-white/10">
+            <h3 class="font-display text-xl font-semibold text-white">Start your claim today</h3>
+            <p class="mt-2 text-slate-400">Not sure which documents apply? Send us a photo and we'll check for you.</p>
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+              <a href="https://wa.me/60142321939?text=Hi%20Wayson%20Auto,%20I%20would%20like%20to%20inquire%20about%20my%20car" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 font-semibold text-white shadow-lg hover:bg-accent-dark transition-colors cursor-pointer"><i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp us</a>
+              <a href="tel:+60142321939" class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 font-semibold text-navy shadow-lg hover:bg-slate-100 transition-colors cursor-pointer"><i class="fa-solid fa-phone"></i> Call us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORKSHOP GALLERY ===================== -->
+    <section id="gallery" class="py-20 sm:py-24 bg-navy">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl reveal">
+          <span class="text-sm font-semibold uppercase tracking-wider text-orange">Inside our workshop</span>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl font-bold text-white">Where the work happens</h2>
+          <p class="mt-4 text-lg text-slate-400">A look at the Wayson Auto workshop. <span class="text-slate-500">(Owner: drop real photos into <code class="text-gold">/assets</code> to fill these tiles.)</span></p>
+        </div>
+
+        <!-- Real storefront photo (if provided) leads; remaining tiles are labelled placeholders -->
+        <div class="mt-12 grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="reveal col-span-2 row-span-2 rounded-2xl overflow-hidden ring-1 ring-white/10 bg-navy-raised min-h-[260px]"
+               style="background-image:linear-gradient(to top,rgba(11,21,38,.6),transparent),url('../assets/storefront.jpg');background-size:cover;background-position:center;">
+            <div class="h-full w-full flex items-end p-5"><span class="text-sm font-medium text-white/90 bg-black/40 backdrop-blur rounded-full px-3 py-1">Our workshop, Dengkil</span></div>
+          </div>
+          <div class="reveal ph-tile rounded-2xl ring-1 ring-white/10 min-h-[120px] grid place-items-center text-slate-500"><span class="text-xs"><i class="fa-solid fa-image"></i> Photo</span></div>
+          <div class="reveal ph-tile rounded-2xl ring-1 ring-white/10 min-h-[120px] grid place-items-center text-slate-500"><span class="text-xs"><i class="fa-solid fa-image"></i> Photo</span></div>
+          <div class="reveal ph-tile rounded-2xl ring-1 ring-white/10 min-h-[120px] grid place-items-center text-slate-500"><span class="text-xs"><i class="fa-solid fa-image"></i> Photo</span></div>
+          <div class="reveal ph-tile rounded-2xl ring-1 ring-white/10 min-h-[120px] grid place-items-center text-slate-500"><span class="text-xs"><i class="fa-solid fa-image"></i> Photo</span></div>
+        </div>
+        <p class="mt-6 text-center reveal">
+          <a href="https://www.facebook.com/p/Wayson-Auto-Sdn-Bhd-100083068965484/" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 text-gold hover:text-orange transition-colors font-semibold cursor-pointer">
+            <i class="fa-brands fa-facebook"></i> See more on our Facebook page <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== REVIEWS ===================== -->
+    <section id="reviews" class="py-20 sm:py-24 bg-navy-deep">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl reveal">
+          <span class="text-sm font-semibold uppercase tracking-wider text-orange">Reviews</span>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl font-bold text-white">Rated 4.8 by 81 customers on Google</h2>
+          <p class="mt-4 text-lg text-slate-400">We let our customers speak for us. Read the real reviews on Google.</p>
+        </div>
+
+        <!-- Rating summary -->
+        <div class="mt-10 reveal flex flex-wrap items-center gap-6 rounded-2xl bg-navy-raised p-7 ring-1 ring-white/10">
+          <div class="text-center">
+            <p class="font-display text-5xl font-bold text-white">4.8</p>
+            <div class="mt-1 text-gold" role="img" aria-label="4.8 out of 5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <p class="mt-1 text-sm text-slate-400">81 reviews</p>
+          </div>
+          <div class="flex-1 min-w-[200px]">
+            <p class="text-slate-300">Wayson Auto holds a <strong class="text-white">4.8 / 5</strong> Google rating. To keep this site honest, we link directly to Google rather than re-posting reviews here.</p>
+            <a href="https://www.google.com/search?q=Wayson+Auto+Sdn+Bhd+Dengkil+reviews" target="_blank" rel="noopener noreferrer"
+               class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-navy shadow hover:bg-slate-100 transition-colors cursor-pointer"><i class="fa-brands fa-google"></i> Read reviews on Google</a>
+          </div>
+        </div>
+
+        <!-- Placeholder review wall (owner to paste real, permissioned Google reviews) -->
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+          <figure class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-dashed ring-white/15">
+            <div class="text-gold mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote class="text-slate-400 italic">"Paste a real Google review here." <span class="not-italic">— placeholder for a verified customer review.</span></blockquote>
+          </figure>
+          <figure class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-dashed ring-white/15">
+            <div class="text-gold mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote class="text-slate-400 italic">"Paste a real Google review here." <span class="not-italic">— placeholder for a verified customer review.</span></blockquote>
+          </figure>
+          <figure class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-dashed ring-white/15">
+            <div class="text-gold mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote class="text-slate-400 italic">"Paste a real Google review here." <span class="not-italic">— placeholder for a verified customer review.</span></blockquote>
+          </figure>
+        </div>
+        <p class="mt-4 text-xs text-slate-500 reveal">Review cards are intentionally left as placeholders — real reviews should be copied from your Google Business Profile (with the customer's public consent) to keep this section accurate.</p>
+      </div>
+    </section>
+
+    <!-- ===================== LOCATION & CONTACT ===================== -->
+    <section id="location" class="py-20 sm:py-24 bg-navy">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl reveal">
+          <span class="text-sm font-semibold uppercase tracking-wider text-orange">Find us</span>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl font-bold text-white">Visit our workshop</h2>
+          <p class="mt-4 text-lg text-slate-400">Drop by, call us, or message us on WhatsApp, we're easy to reach.</p>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 reveal">
+          <a href="tel:+60142321939" class="flex flex-col items-center gap-2 rounded-2xl bg-navy-raised p-5 ring-1 ring-white/10 hover:ring-orange/50 transition-colors cursor-pointer"><i class="fa-solid fa-phone text-xl text-gold"></i><span class="text-sm font-medium text-white">Call</span></a>
+          <a href="https://wa.me/60142321939?text=Hi%20Wayson%20Auto,%20I%20would%20like%20to%20inquire%20about%20my%20car" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 rounded-2xl bg-navy-raised p-5 ring-1 ring-white/10 hover:ring-accent/60 transition-colors cursor-pointer"><i class="fa-brands fa-whatsapp text-xl text-accent-brand"></i><span class="text-sm font-medium text-white">WhatsApp</span></a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Wayson+Auto+Sdn+Bhd+Dengkil+Selangor" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 rounded-2xl bg-navy-raised p-5 ring-1 ring-white/10 hover:ring-orange/50 transition-colors cursor-pointer"><i class="fa-solid fa-diamond-turn-right text-xl text-gold"></i><span class="text-sm font-medium text-white">Directions</span></a>
+          <a href="https://wa.me/60142321939?text=Hi%20Wayson%20Auto,%20I%20would%20like%20to%20request%20a%20quote" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 rounded-2xl bg-navy-raised p-5 ring-1 ring-white/10 hover:ring-orange/50 transition-colors cursor-pointer"><i class="fa-solid fa-file-invoice-dollar text-xl text-gold"></i><span class="text-sm font-medium text-white">Get a Quote</span></a>
+        </div>
+
+        <div class="mt-8 grid lg:grid-cols-2 gap-8 items-stretch">
+          <!-- Contact details -->
+          <div class="reveal rounded-2xl bg-navy-raised p-7 sm:p-9 ring-1 ring-white/10">
+            <h3 class="font-display text-2xl font-semibold text-white">Contact &amp; Hours</h3>
+            <ul class="mt-6 space-y-6">
+              <li class="flex items-start gap-4">
+                <span class="grid place-items-center h-11 w-11 shrink-0 rounded-lg bg-gold/15 text-gold"><i class="fa-solid fa-location-dot"></i></span>
+                <div>
+                  <p class="font-semibold text-white">Address</p>
+                  <address class="not-italic text-slate-400 leading-relaxed">Wayson Auto Sdn Bhd<br />Lot 17838, Jalan Revolusi Hijau, Batu 29/30,<br />43800 Dengkil, Selangor</address>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="grid place-items-center h-11 w-11 shrink-0 rounded-lg bg-gold/15 text-gold"><i class="fa-solid fa-phone"></i></span>
+                <div>
+                  <p class="font-semibold text-white">Phone &amp; WhatsApp</p>
+                  <p><a href="tel:+60142321939" class="text-slate-400 hover:text-gold transition-colors">014-232 1939</a> <span class="text-slate-600">(WhatsApp)</span></p>
+                  <p><a href="tel:+601112001939" class="text-slate-400 hover:text-gold transition-colors">011-1200 1939</a> <span class="text-slate-600">(Office)</span></p>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="grid place-items-center h-11 w-11 shrink-0 rounded-lg bg-gold/15 text-gold"><i class="fa-solid fa-envelope"></i></span>
+                <div><p class="font-semibold text-white">Email</p><a href="mailto:waysonauto@gmail.com" class="text-slate-400 hover:text-gold transition-colors break-all">waysonauto@gmail.com</a></div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="grid place-items-center h-11 w-11 shrink-0 rounded-lg bg-gold/15 text-gold"><i class="fa-solid fa-clock"></i></span>
+                <div class="w-full">
+                  <p class="font-semibold text-white">Operating Hours <span class="text-xs font-normal text-slate-500">(please confirm)</span></p>
+                  <dl class="mt-2 space-y-1.5 text-slate-400">
+                    <div class="flex justify-between gap-4"><dt>Monday – Friday</dt><dd class="text-white">9:00 AM – 6:00 PM</dd></div>
+                    <div class="flex justify-between gap-4"><dt>Saturday</dt><dd class="text-white">9:00 AM – 5:00 PM</dd></div>
+                    <div class="flex justify-between gap-4"><dt>Sunday</dt><dd class="text-slate-500">Closed</dd></div>
+                  </dl>
+                  <p class="mt-3 flex items-start gap-2 rounded-lg bg-gold/10 px-3 py-2 text-sm text-gold"><i class="fa-solid fa-mug-hot mt-0.5"></i><span>Lunch break daily: <strong>1:00 PM – 2:00 PM</strong>.</span></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Map -->
+          <div class="reveal relative rounded-2xl overflow-hidden ring-1 ring-white/10 min-h-[360px]">
+            <iframe title="Map showing Wayson Auto Sdn Bhd in Dengkil, Selangor"
+              src="https://www.google.com/maps?q=Wayson+Auto+Sdn+Bhd+Dengkil+Selangor&output=embed"
+              width="100%" height="100%" style="border:0;min-height:360px;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <div class="absolute bottom-3 left-3 right-3 flex flex-wrap gap-2 sm:right-auto">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Wayson+Auto+Sdn+Bhd+Dengkil+Selangor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-white/95 backdrop-blur px-4 py-2.5 text-sm font-semibold text-navy shadow-lg hover:bg-white transition-colors cursor-pointer"><i class="fa-solid fa-diamond-turn-right text-orange-deep"></i> Google Maps</a>
+              <a href="https://www.waze.com/ul?q=Wayson%20Auto%20Sdn%20Bhd%20Dengkil%20Selangor&navigate=yes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-[#33CCFF] px-4 py-2.5 text-sm font-semibold text-navy shadow-lg hover:bg-[#22BBEE] transition-colors cursor-pointer"><i class="fa-brands fa-waze"></i> Waze</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-navy-deep border-t border-white/10 text-slate-400">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid gap-8 md:grid-cols-3">
+        <div>
+          <div class="flex items-center gap-3 text-white">
+            <svg viewBox="0 0 100 100" class="h-11 w-11 shrink-0" role="img" aria-label="Wayson Auto logo">
+              <circle cx="50" cy="50" r="48" fill="#15233F" /><circle cx="50" cy="50" r="45" fill="none" stroke="#F59E0B" stroke-width="4" /><path d="M24 33 L36 69 L50 35 L64 69 L76 33" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
+            </svg>
+            <span><span class="block font-display font-bold text-lg leading-tight">Wayson Auto Sdn Bhd</span><span class="block text-sm text-slate-500">威勝汽車有限公司</span></span>
+          </div>
+          <p class="mt-4 font-display text-sm font-medium text-gold">Moving Rides. Relieving Worries. Restoring Confidence.</p>
+          <p class="mt-3 text-sm leading-relaxed">Accident repair, body &amp; paint and insurance-claim specialists serving Sepang, Putrajaya, Cyberjaya, Cyber South, Dengkil &amp; surrounding areas.</p>
+          <!-- Verified social profiles only -->
+          <div class="mt-5 flex items-center gap-3">
+            <a href="https://www.facebook.com/p/Wayson-Auto-Sdn-Bhd-100083068965484/" target="_blank" rel="noopener noreferrer" aria-label="Wayson Auto on Facebook" class="grid place-items-center h-10 w-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer"><i class="fa-brands fa-facebook-f"></i></a>
+            <!-- Instagram / TikTok / YouTube: no verified official profile found — add here once confirmed. -->
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-display font-semibold text-white">Quick Links</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+            <li><a href="#why" class="hover:text-white transition-colors">Why Us</a></li>
+            <li><a href="#claims" class="hover:text-white transition-colors">Insurance Claims</a></li>
+            <li><a href="#gallery" class="hover:text-white transition-colors">Workshop</a></li>
+            <li><a href="#location" class="hover:text-white transition-colors">Location &amp; Hours</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-display font-semibold text-white">Get in touch</h3>
+          <ul class="mt-4 space-y-3 text-sm">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-user mt-1 text-gold"></i><span>James Ng — Manager</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot mt-1 text-gold"></i><span>Lot 17838, Jalan Revolusi Hijau, Batu 29/30, 43800 Dengkil, Selangor</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-gold"></i><a href="tel:+60142321939" class="hover:text-white transition-colors">014-232 1939</a> <span class="text-slate-600">/</span> <a href="tel:+601112001939" class="hover:text-white transition-colors">011-1200 1939</a></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-gold"></i><a href="mailto:waysonauto@gmail.com" class="hover:text-white transition-colors break-all">waysonauto@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-10 border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-center text-sm text-slate-500">
+        <span>&copy; <span id="year"></span> Wayson Auto Sdn Bhd. All rights reserved.</span>
+        <span>Reg. No. 202101030720 (1431020-W)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Desktop WhatsApp FAB -->
+  <a href="https://wa.me/60142321939?text=Hi%20Wayson%20Auto,%20I%20would%20like%20to%20inquire%20about%20my%20car" target="_blank" rel="noopener noreferrer"
+     aria-label="Chat on WhatsApp"
+     class="fab-pulse hidden lg:inline-flex fixed bottom-6 right-6 z-50 items-center justify-center h-16 w-16 rounded-full bg-accent-brand text-white shadow-2xl hover:bg-[#1DA851] transition-colors cursor-pointer">
+    <i class="fa-brands fa-whatsapp text-4xl"></i>
+  </a>
+
+  <!-- Sticky mobile action bar (one-thumb reach) -->
+  <nav class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-navy-deep/95 backdrop-blur border-t border-white/10 grid grid-cols-3 text-center" aria-label="Quick actions" style="padding-bottom:env(safe-area-inset-bottom);">
+    <a href="tel:+60142321939" class="flex flex-col items-center gap-1 py-2.5 text-slate-200 active:bg-white/10"><i class="fa-solid fa-phone text-gold"></i><span class="text-xs font-medium">Call</span></a>
+    <a href="https://wa.me/60142321939?text=Hi%20Wayson%20Auto,%20I%20would%20like%20to%20inquire%20about%20my%20car" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-1 py-2.5 text-white bg-accent active:bg-accent-dark"><i class="fa-brands fa-whatsapp"></i><span class="text-xs font-semibold">WhatsApp</span></a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Wayson+Auto+Sdn+Bhd+Dengkil+Selangor" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-1 py-2.5 text-slate-200 active:bg-white/10"><i class="fa-solid fa-diamond-turn-right text-gold"></i><span class="text-xs font-medium">Directions</span></a>
+  </nav>
+
+  <script>
+    // Mobile menu
+    const toggle = document.getElementById('menu-toggle'), menu = document.getElementById('mobile-menu'), icon = document.getElementById('menu-icon');
+    const closeMenu = () => { menu.classList.add('hidden'); toggle.setAttribute('aria-expanded','false'); icon.classList.replace('fa-xmark','fa-bars'); };
+    toggle.addEventListener('click', () => {
+      const open = !menu.classList.contains('hidden');
+      if (open) closeMenu();
+      else { menu.classList.remove('hidden'); toggle.setAttribute('aria-expanded','true'); icon.classList.replace('fa-bars','fa-xmark'); }
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal + number counters via IntersectionObserver
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animateCount = (el) => {
+      const target = parseFloat(el.dataset.count);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      if (prefersReduced) { el.textContent = target.toFixed(decimals); return; }
+      const duration = 1200; const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = (target * eased).toFixed(decimals);
+        if (p < 1) requestAnimationFrame(tick); else el.textContent = target.toFixed(decimals);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        e.target.querySelectorAll && e.target.querySelectorAll('[data-count]').forEach(animateCount);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
