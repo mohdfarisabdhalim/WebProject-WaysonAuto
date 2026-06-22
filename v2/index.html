@@ -454,27 +454,23 @@
           </div>
           <div class="flex-1 min-w-[200px]">
             <p class="text-slate-300">Wayson Auto holds a <strong class="text-white">4.8 / 5</strong> Google rating. To keep this site honest, we link directly to Google rather than re-posting reviews here.</p>
-            <a href="https://www.google.com/search?q=Wayson+Auto+Sdn+Bhd+Dengkil+reviews" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.google.com/search?q=Wayson+Auto+Sdn+Bhd+Reviews" target="_blank" rel="noopener noreferrer"
                class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-navy shadow hover:bg-slate-100 transition-colors cursor-pointer"><i class="fa-brands fa-google"></i> Read reviews on Google</a>
           </div>
         </div>
 
-        <!-- Placeholder review wall (owner to paste real, permissioned Google reviews) -->
-        <div class="mt-6 grid gap-5 md:grid-cols-3">
-          <figure class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-dashed ring-white/15">
-            <div class="text-gold mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <blockquote class="text-slate-400 italic">"Paste a real Google review here." <span class="not-italic">— placeholder for a verified customer review.</span></blockquote>
-          </figure>
-          <figure class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-dashed ring-white/15">
-            <div class="text-gold mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <blockquote class="text-slate-400 italic">"Paste a real Google review here." <span class="not-italic">— placeholder for a verified customer review.</span></blockquote>
-          </figure>
-          <figure class="reveal rounded-2xl bg-navy-raised p-7 ring-1 ring-dashed ring-white/15">
-            <div class="text-gold mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <blockquote class="text-slate-400 italic">"Paste a real Google review here." <span class="not-italic">— placeholder for a verified customer review.</span></blockquote>
-          </figure>
+        <!--
+          Auto-cycling review carousel (advances every 1.2s).
+          Google's review widget is JavaScript-rendered and not scrapable, so these
+          slides are honestly-labelled placeholders, not fabricated testimonials.
+          Paste real, owner-approved Google review quotes into the REVIEWS array in
+          the script at the bottom of this file to populate them.
+        -->
+        <div id="reviews-carousel" class="reveal mt-6 max-w-2xl mx-auto" role="region" aria-roledescription="carousel" aria-label="Customer reviews">
+          <div class="relative min-h-[200px] rounded-2xl bg-navy-raised ring-1 ring-dashed ring-white/15 p-8 overflow-hidden" id="reviews-track"></div>
+          <div class="mt-4 flex justify-center gap-2" id="reviews-dots"></div>
         </div>
-        <p class="mt-4 text-xs text-slate-500 reveal">Review cards are intentionally left as placeholders — real reviews should be copied from your Google Business Profile (with the customer's public consent) to keep this section accurate.</p>
+        <p class="mt-4 text-xs text-slate-500 reveal text-center">Carousel slides are placeholders until real, owner-approved Google review quotes are added.</p>
       </div>
     </section>
 
@@ -624,6 +620,61 @@
 
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- Auto-cycling reviews carousel ---
+    // Replace the quote/source fields below with real, owner-approved Google
+    // review text to go live — no other changes needed.
+    (function () {
+      const REVIEWS = [
+        { stars: 5, quote: 'Real Google reviews will appear here once provided.', source: 'Awaiting real review #1' },
+        { stars: 5, quote: "Tap “Read reviews on Google” to see what customers are saying right now.", source: 'Awaiting real review #2' },
+        { stars: 5, quote: 'Ask Wayson Auto to paste 3–5 review quotes from Google to populate this carousel.', source: 'Awaiting real review #3' },
+      ];
+
+      const track = document.getElementById('reviews-track');
+      const dotsWrap = document.getElementById('reviews-dots');
+      if (!track || !dotsWrap || !REVIEWS.length) return;
+
+      const starsHtml = (n) => Array.from({ length: 5 }, (_, i) =>
+        `<i class="fa-solid fa-star" aria-hidden="true" style="opacity:${i < n ? 1 : 0.3}"></i>`).join('');
+
+      track.innerHTML = REVIEWS.map((r, i) => `
+        <figure class="absolute inset-0 p-8 flex flex-col items-center justify-center text-center transition-opacity duration-500 ${i === 0 ? 'opacity-100' : 'opacity-0'}" data-slide="${i}">
+          <div class="text-gold text-xl mb-3">${starsHtml(r.stars)}</div>
+          <blockquote class="text-slate-300 italic leading-relaxed max-w-md">&ldquo;${r.quote}&rdquo;</blockquote>
+          <figcaption class="mt-4 text-sm font-semibold text-slate-500">${r.source}</figcaption>
+        </figure>`).join('');
+
+      dotsWrap.innerHTML = REVIEWS.map((_, i) =>
+        `<button type="button" class="h-2.5 w-2.5 rounded-full transition-colors duration-200 cursor-pointer ${i === 0 ? 'bg-gold' : 'bg-white/20'}" data-dot="${i}" aria-label="Show review ${i + 1}"></button>`).join('');
+
+      const slides = [...track.querySelectorAll('[data-slide]')];
+      const dots = [...dotsWrap.querySelectorAll('[data-dot]')];
+      let active = 0;
+      let timer = null;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function show(index) {
+        slides[active].classList.replace('opacity-100', 'opacity-0');
+        dots[active].classList.replace('bg-gold', 'bg-white/20');
+        active = index;
+        slides[active].classList.replace('opacity-0', 'opacity-100');
+        dots[active].classList.replace('bg-white/20', 'bg-gold');
+      }
+
+      function next() { show((active + 1) % slides.length); }
+      function start() { if (!reduced && slides.length > 1) timer = setInterval(next, 1200); }
+      function stop() { clearInterval(timer); }
+
+      dots.forEach((dot, i) => dot.addEventListener('click', () => { stop(); show(i); start(); }));
+      const carousel = document.getElementById('reviews-carousel');
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', start);
+      carousel.addEventListener('focusin', stop);
+      carousel.addEventListener('focusout', start);
+
+      start();
+    })();
 
     // Scroll reveal + number counters via IntersectionObserver
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
