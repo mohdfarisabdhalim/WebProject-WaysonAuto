@@ -99,6 +99,22 @@
         #1B2C4D;
     }
 
+    /*
+      Review photo thumbnail. The real photo (set per-element via the --bg-url
+      custom property) is layered OVER a placeholder texture. If the photo file
+      doesn't exist yet (404), that layer simply doesn't render and the texture
+      shows through underneath — so missing photos never break the layout or
+      show a broken-image icon.
+    */
+    .review-thumb {
+      border-radius: 0.625rem;
+      background-image: var(--bg-url), repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 10px, rgba(255,255,255,0.09) 10px 20px);
+      background-size: cover, 28px 28px;
+      background-position: center;
+      background-color: #1B2C4D;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+    }
+
     /* WhatsApp FAB pulse */
     @keyframes fab-pulse {
       0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); }
@@ -467,7 +483,7 @@
           the script at the bottom of this file to populate them.
         -->
         <div id="reviews-carousel" class="reveal mt-6 max-w-2xl mx-auto" role="region" aria-roledescription="carousel" aria-label="Customer reviews">
-          <div class="relative min-h-[200px] rounded-2xl bg-navy-raised ring-1 ring-dashed ring-white/15 p-8 overflow-hidden" id="reviews-track"></div>
+          <div class="relative min-h-[280px] sm:min-h-[260px] rounded-2xl bg-navy-raised ring-1 ring-dashed ring-white/15 p-8 overflow-hidden" id="reviews-track"></div>
           <div class="mt-4 flex justify-center gap-2" id="reviews-dots"></div>
         </div>
         <p class="mt-4 text-xs text-slate-500 reveal text-center">Carousel slides are placeholders until real, owner-approved Google review quotes are added.</p>
@@ -621,14 +637,29 @@
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // --- Auto-cycling reviews carousel ---
-    // Replace the quote/source fields below with real, owner-approved Google
-    // review text to go live — no other changes needed.
+    // --- Auto-cycling reviews carousel (with photo thumbnails) ---
+    // Real review text + reviewer names below are taken verbatim from Wayson Auto's
+    // Google Business Profile reviews. The `photos` arrays reference files that must
+    // be saved to /assets/reviews/<name>.jpg — until then, each thumbnail gracefully
+    // falls back to a placeholder texture (see .review-thumb CSS) rather than a broken
+    // image icon.
     (function () {
       const REVIEWS = [
-        { stars: 5, quote: 'Real Google reviews will appear here once provided.', source: 'Awaiting real review #1' },
-        { stars: 5, quote: "Tap “Read reviews on Google” to see what customers are saying right now.", source: 'Awaiting real review #2' },
-        { stars: 5, quote: 'Ask Wayson Auto to paste 3–5 review quotes from Google to populate this carousel.', source: 'Awaiting real review #3' },
+        { stars: 5, name: 'Mustafa Hassan', meta: '11 reviews · 9 photos',
+          quote: 'Very professional workshop. They tell me the car will take 10 working days and they finish exactly on the time with perfect work. Very recommended for insurance claims. Thank you 🙏',
+          photos: ['mustafa-hassan-1.jpg', 'mustafa-hassan-2.jpg', 'mustafa-hassan-3.jpg'] },
+        { stars: 5, name: 'Hazly Adam', meta: 'Local Guide · 67 reviews · 7 photos',
+          quote: "Excellent job at restoring my Ertiga. They smooth things up with the insurance claim and the spare parts sourcing. I'm very thankful for service given and recommended them highly.",
+          photos: ['hazly-adam-1.jpg', 'hazly-adam-2.jpg', 'hazly-adam-3.jpg', 'hazly-adam-4.jpg'] },
+        { stars: 5, name: 'Danialnaeem Emirzan', meta: 'Local Guide · 16 reviews · 8 photos',
+          quote: 'Fast service, even got raya holidays also settle within 2 weeks time. Alang alang terus upgrade my se2. Tq',
+          photos: ['danialnaeem-1.jpg', 'danialnaeem-2.jpg', 'danialnaeem-3.jpg'] },
+        { stars: 5, name: 'Emad Shehabi', meta: 'Local Guide · 10 reviews · 7 photos',
+          quote: 'Thanks allot. Very good service. Fast and good.',
+          photos: ['emad-shehabi-1.jpg', 'emad-shehabi-2.jpg'] },
+        { stars: 4, name: 'Mustaqim Ismail', meta: 'Local Guide · 11 reviews · 6 photos',
+          quote: 'Faster, less than one month dah boleh pick up untuk minor accident. Cuma kena selalu follow up dan datang check kerja. Untuk alat gantian tu susah nak komen sebab tak tahu dapat ori atau tak.',
+          photos: ['mustaqim-ismail-1.jpg', 'mustaqim-ismail-2.jpg', 'mustaqim-ismail-3.jpg', 'mustaqim-ismail-4.jpg', 'mustaqim-ismail-5.jpg'] },
       ];
 
       const track = document.getElementById('reviews-track');
@@ -638,11 +669,18 @@
       const starsHtml = (n) => Array.from({ length: 5 }, (_, i) =>
         `<i class="fa-solid fa-star" aria-hidden="true" style="opacity:${i < n ? 1 : 0.3}"></i>`).join('');
 
+      const thumbsHtml = (photos) => photos.map(file =>
+        `<div class="review-thumb h-14 w-14 sm:h-16 sm:w-16 shrink-0" style="--bg-url:url('../assets/reviews/${file}')" title="${file}"></div>`).join('');
+
       track.innerHTML = REVIEWS.map((r, i) => `
-        <figure class="absolute inset-0 p-8 flex flex-col items-center justify-center text-center transition-opacity duration-500 ${i === 0 ? 'opacity-100' : 'opacity-0'}" data-slide="${i}">
+        <figure class="absolute inset-0 p-6 sm:p-8 flex flex-col items-center justify-center text-center transition-opacity duration-500 ${i === 0 ? 'opacity-100' : 'opacity-0'}" data-slide="${i}">
           <div class="text-gold text-xl mb-3">${starsHtml(r.stars)}</div>
-          <blockquote class="text-slate-300 italic leading-relaxed max-w-md">&ldquo;${r.quote}&rdquo;</blockquote>
-          <figcaption class="mt-4 text-sm font-semibold text-slate-500">${r.source}</figcaption>
+          <blockquote class="text-slate-300 leading-relaxed max-w-md">&ldquo;${r.quote}&rdquo;</blockquote>
+          <figcaption class="mt-3 text-sm">
+            <span class="font-semibold text-white">${r.name}</span>
+            <span class="text-slate-500"> · ${r.meta}</span>
+          </figcaption>
+          <div class="mt-4 flex justify-center gap-2 flex-wrap">${thumbsHtml(r.photos)}</div>
         </figure>`).join('');
 
       dotsWrap.innerHTML = REVIEWS.map((_, i) =>
