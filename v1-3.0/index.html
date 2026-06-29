@@ -183,12 +183,11 @@
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
               mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
     }
-    /* Logos: uniform height, grayscale by default, full colour on hover */
-    .ip-logo { max-height: 56px; width: auto; object-fit: contain; filter: grayscale(100%); opacity: .6; transition: filter .35s ease, opacity .35s ease; }
-    .ip-cell:hover .ip-logo { filter: grayscale(0); opacity: 1; }
+    /* Logos: uniform height, full colour, slight zoom on hover */
+    .ip-logo { max-height: 52px; width: auto; object-fit: contain; transition: transform .3s ease; }
+    .ip-cell:hover .ip-logo { transform: scale(1.06); }
     /* Graceful fallback: if a logo file is missing, show a styled brand name instead of a broken image */
-    .ip-cell.no-logo::after { content: attr(data-name); font-family: 'Poppins', system-ui, sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -.01em; color: #15233F; filter: grayscale(100%); opacity: .6; transition: color .35s ease, filter .35s ease, opacity .35s ease; }
-    .ip-cell.no-logo:hover::after { color: #F5A623; filter: grayscale(0); opacity: 1; }
+    .ip-cell.no-logo::after { content: attr(data-name); font-family: 'Poppins', system-ui, sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: -.01em; color: #15233F; }
     @media (prefers-reduced-motion: reduce) {
       .ip-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; }
     }
@@ -342,8 +341,8 @@
 
     <!-- ============================================================= -->
     <!-- INSURANCE PANELS (infinite-scroll logo marquee)               -->
-    <!-- Drop official logos into /assets/insurers/<name>.svg (or .png  -->
-    <!-- and update the src). Until then each slot shows the brand name.-->
+    <!-- Logos live in /assets/insurers/<name>.png; a missing file      -->
+    <!-- gracefully shows the brand name instead of a broken image.     -->
     <!-- ============================================================= -->
     <section id="panels" aria-labelledby="panels-heading" class="py-14 sm:py-16 bg-brand-light border-y border-slate-200">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -355,24 +354,26 @@
 
         <div class="ip-viewport ip-fade mt-9 overflow-hidden" role="marquee" aria-label="Insurance panel logos">
           <div class="ip-track items-center gap-4">
-            <!-- First set -->
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Generali"><img src="../assets/insurers/generali.svg" alt="Generali Malaysia" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Berjaya Sompo"><img src="../assets/insurers/berjaya-sompo.svg" alt="Berjaya Sompo Insurance" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="RHB Insurance"><img src="../assets/insurers/rhb.svg" alt="RHB Insurance" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Progressive"><img src="../assets/insurers/progressive.svg" alt="Progressive Insurance Bhd" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Generali"><img src="../assets/insurers/generali.svg" alt="Generali Malaysia" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Berjaya Sompo"><img src="../assets/insurers/berjaya-sompo.svg" alt="Berjaya Sompo Insurance" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="RHB Insurance"><img src="../assets/insurers/rhb.svg" alt="RHB Insurance" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Progressive"><img src="../assets/insurers/progressive.svg" alt="Progressive Insurance Bhd" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <!-- Duplicate set (aria-hidden) for the seamless loop -->
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Generali" aria-hidden="true"><img src="../assets/insurers/generali.svg" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Berjaya Sompo" aria-hidden="true"><img src="../assets/insurers/berjaya-sompo.svg" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="RHB Insurance" aria-hidden="true"><img src="../assets/insurers/rhb.svg" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Progressive" aria-hidden="true"><img src="../assets/insurers/progressive.svg" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Generali" aria-hidden="true"><img src="../assets/insurers/generali.svg" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Berjaya Sompo" aria-hidden="true"><img src="../assets/insurers/berjaya-sompo.svg" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="RHB Insurance" aria-hidden="true"><img src="../assets/insurers/rhb.svg" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
-            <div class="ip-cell grid place-items-center shrink-0 min-w-[150px] sm:min-w-[200px] h-20 px-6" data-name="Progressive" aria-hidden="true"><img src="../assets/insurers/progressive.svg" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Etiqa"><img src="../assets/insurers/etiqa.png" alt="Etiqa" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Generali"><img src="../assets/insurers/generali.png" alt="Generali" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="RHB Insurance"><img src="../assets/insurers/rhb.png" alt="RHB Insurance" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Allianz"><img src="../assets/insurers/allianz.png" alt="Allianz" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Takaful Malaysia"><img src="../assets/insurers/takaful-malaysia.png" alt="Takaful Malaysia" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Pacific &amp; Orient"><img src="../assets/insurers/pacific-orient.png" alt="Pacific &amp; Orient" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="MSIG"><img src="../assets/insurers/msig.png" alt="MSIG" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Lonpac"><img src="../assets/insurers/lonpac.png" alt="Lonpac" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Progressive"><img src="../assets/insurers/progressive.png" alt="Progressive Insurance Bhd" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Pacific Insurance"><img src="../assets/insurers/pacific-insurance.png" alt="Pacific Insurance" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Etiqa" aria-hidden="true"><img src="../assets/insurers/etiqa.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Generali" aria-hidden="true"><img src="../assets/insurers/generali.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="RHB Insurance" aria-hidden="true"><img src="../assets/insurers/rhb.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Allianz" aria-hidden="true"><img src="../assets/insurers/allianz.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Takaful Malaysia" aria-hidden="true"><img src="../assets/insurers/takaful-malaysia.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Pacific &amp; Orient" aria-hidden="true"><img src="../assets/insurers/pacific-orient.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="MSIG" aria-hidden="true"><img src="../assets/insurers/msig.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Lonpac" aria-hidden="true"><img src="../assets/insurers/lonpac.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Progressive" aria-hidden="true"><img src="../assets/insurers/progressive.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
+            <div class="ip-cell shrink-0 flex h-24 w-44 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md" data-name="Pacific Insurance" aria-hidden="true"><img src="../assets/insurers/pacific-insurance.png" alt="" class="ip-logo" onerror="this.closest('.ip-cell').classList.add('no-logo');this.remove();"></div>
           </div>
         </div>
       </div>
@@ -588,85 +589,6 @@
           </div>
 
         </div>
-      </div>
-    </section>
-
-    <!-- ============================================================= -->
-    <!-- INSURANCE PARTNERS                                             -->
-    <!-- ============================================================= -->
-    <section id="partners" aria-labelledby="partners-heading" class="py-20 sm:py-24 bg-brand-light">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl mx-auto text-center">
-          <span class="text-sm font-bold uppercase tracking-wider text-red">Authorized panel workshop</span>
-          <h2 id="partners-heading" class="mt-3 font-heading text-3xl sm:text-4xl font-bold text-brand">Our Insurance Partners</h2>
-          <p class="mt-4 text-lg text-slate-600">
-            We're an authorized panel workshop for Malaysia's leading insurers, so your accident claim is
-            handled quickly, smoothly and with no hassle.
-          </p>
-        </div>
-
-        <!-- Logo grid: 2 cols (mobile) -> 3 cols (tablet & desktop). Monogram tiles are
-             placeholders; swap each for the insurer's official logo <img> once licensed. -->
-        <ul role="list" class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
-          <li>
-            <div class="group flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-7 text-center shadow-sm transition duration-300 ease-out hover:scale-105 hover:border-gold hover:shadow-md">
-              <span class="grid h-12 w-12 place-items-center rounded-xl bg-brand font-heading text-[13px] font-bold tracking-tight text-gold transition-colors duration-300 group-hover:bg-brand-dark">RHB</span>
-              <span class="text-sm sm:text-base font-semibold tracking-tight text-brand">RHB</span>
-            </div>
-          </li>
-          <li>
-            <div class="group flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-7 text-center shadow-sm transition duration-300 ease-out hover:scale-105 hover:border-gold hover:shadow-md">
-              <span class="grid h-12 w-12 place-items-center rounded-xl bg-brand font-heading text-lg font-bold tracking-tight text-gold transition-colors duration-300 group-hover:bg-brand-dark">L</span>
-              <span class="text-sm sm:text-base font-semibold tracking-tight text-brand">Lonpac</span>
-            </div>
-          </li>
-          <li>
-            <div class="group flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-7 text-center shadow-sm transition duration-300 ease-out hover:scale-105 hover:border-gold hover:shadow-md">
-              <span class="grid h-12 w-12 place-items-center rounded-xl bg-brand font-heading text-[12px] font-bold tracking-tight text-gold transition-colors duration-300 group-hover:bg-brand-dark">MSIG</span>
-              <span class="text-sm sm:text-base font-semibold tracking-tight text-brand">MSIG</span>
-            </div>
-          </li>
-          <li>
-            <div class="group flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-7 text-center shadow-sm transition duration-300 ease-out hover:scale-105 hover:border-gold hover:shadow-md">
-              <span class="grid h-12 w-12 place-items-center rounded-xl bg-brand font-heading text-sm font-bold tracking-tight text-gold transition-colors duration-300 group-hover:bg-brand-dark">P&amp;O</span>
-              <span class="text-sm sm:text-base font-semibold tracking-tight text-brand">Pacific &amp; Orient</span>
-            </div>
-          </li>
-          <li>
-            <div class="group flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-7 text-center shadow-sm transition duration-300 ease-out hover:scale-105 hover:border-gold hover:shadow-md">
-              <span class="grid h-12 w-12 place-items-center rounded-xl bg-brand font-heading text-base font-bold tracking-tight text-gold transition-colors duration-300 group-hover:bg-brand-dark">TP</span>
-              <span class="text-sm sm:text-base font-semibold tracking-tight text-brand">The Pacific</span>
-            </div>
-          </li>
-          <li>
-            <div class="group flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-7 text-center shadow-sm transition duration-300 ease-out hover:scale-105 hover:border-gold hover:shadow-md">
-              <span class="grid h-12 w-12 place-items-center rounded-xl bg-brand font-heading text-lg font-bold tracking-tight text-gold transition-colors duration-300 group-hover:bg-brand-dark">G</span>
-              <span class="text-sm sm:text-base font-semibold tracking-tight text-brand">Generali</span>
-            </div>
-          </li>
-          <li>
-            <div class="group flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-7 text-center shadow-sm transition duration-300 ease-out hover:scale-105 hover:border-gold hover:shadow-md">
-              <span class="grid h-12 w-12 place-items-center rounded-xl bg-brand font-heading text-[12px] font-bold tracking-tight text-gold transition-colors duration-300 group-hover:bg-brand-dark">STM</span>
-              <span class="text-sm sm:text-base font-semibold tracking-tight text-brand">Syarikat Takaful Malaysia</span>
-            </div>
-          </li>
-          <li>
-            <div class="group flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-7 text-center shadow-sm transition duration-300 ease-out hover:scale-105 hover:border-gold hover:shadow-md">
-              <span class="grid h-12 w-12 place-items-center rounded-xl bg-brand font-heading text-base font-bold tracking-tight text-gold transition-colors duration-300 group-hover:bg-brand-dark">PI</span>
-              <span class="text-sm sm:text-base font-semibold tracking-tight text-brand">Progressive Insurance</span>
-            </div>
-          </li>
-          <li>
-            <div class="group flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-7 text-center shadow-sm transition duration-300 ease-out hover:scale-105 hover:border-gold hover:shadow-md">
-              <span class="grid h-12 w-12 place-items-center rounded-xl bg-brand font-heading text-lg font-bold tracking-tight text-gold transition-colors duration-300 group-hover:bg-brand-dark">A</span>
-              <span class="text-sm sm:text-base font-semibold tracking-tight text-brand">Allianz</span>
-            </div>
-          </li>
-        </ul>
-
-        <p class="mt-10 text-center text-sm text-slate-500">
-          Don't see your insurer? We work with most major providers in Malaysia, just ask us.
-        </p>
       </div>
     </section>
 
