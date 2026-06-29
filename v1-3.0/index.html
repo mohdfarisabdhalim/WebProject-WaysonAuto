@@ -186,6 +186,7 @@
     /* Logos: uniform height, full colour, slight zoom on hover */
     .ip-logo { max-height: 52px; width: auto; object-fit: contain; transition: transform .3s ease; }
     .ip-logo.ip-lg { max-height: 60px; }  /* +15% for logos that read small */
+    .ip-logo.ip-xl { max-height: 69px; }  /* +15% again for these four */
     .ip-cell:hover .ip-logo { transform: scale(1.06); }
     /* Brand name label under each logo */
     .ip-name { font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: .72rem; letter-spacing: .01em; color: #15233F; white-space: nowrap; }
@@ -212,11 +213,7 @@
         <!-- Brand / logo (red "W" mark echoes the signboard logo box) -->
         <a href="#hero" class="flex items-center gap-3 text-white group" aria-label="Wayson Auto Sdn Bhd home">
           <!-- Gold "W" mark (SVG) - matches the official Wayson Auto logo -->
-          <svg viewBox="0 0 100 100" class="h-11 w-11 shrink-0 drop-shadow" role="img" aria-label="Wayson Auto logo">
-            <circle cx="50" cy="50" r="48" fill="#0B1526" />
-            <circle cx="50" cy="50" r="45" fill="none" stroke="#F5A623" stroke-width="4" />
-            <path d="M24 33 L36 69 L50 35 L64 69 L76 33" fill="none" stroke="#F5A623" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
-          </svg>
+          <img src="../assets/wayson.jpeg" alt="Wayson Auto logo" class="h-11 w-11 shrink-0 rounded-full object-cover drop-shadow" />
           <span class="leading-tight">
             <span class="block font-heading font-bold text-lg sm:text-xl tracking-tight">Wayson Auto</span>
             <span class="block text-[11px] sm:text-xs text-slate-300 -mt-0.5">Bengkel Kereta &middot; Dengkil</span>
@@ -342,8 +339,6 @@
 
     <!-- ============================================================= -->
     <!-- INSURANCE PANELS (infinite-scroll logo marquee)               -->
-    <!-- Logos live in /assets/insurers/<name>; a missing file          -->
-    <!-- simply drops the image and leaves the name label.              -->
     <!-- ============================================================= -->
     <section id="panels" aria-labelledby="panels-heading" class="py-14 sm:py-16 bg-brand-light border-y border-slate-200">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -359,22 +354,22 @@
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/generali.png" alt="Generali" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Generali</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/rhb.png" alt="RHB Insurance" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">RHB Insurance</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/allianz.png" alt="Allianz" class="ip-logo" onerror="this.remove();"><span class="ip-name">Allianz</span></div>
-            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/takaful-malaysia.png" alt="Takaful Malaysia" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Takaful Malaysia</span></div>
+            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/takaful-malaysia.png" alt="Takaful Malaysia" class="ip-logo ip-xl" onerror="this.remove();"><span class="ip-name">Takaful Malaysia</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/pacific-orient.png" alt="Pacific &amp; Orient" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Pacific &amp; Orient</span></div>
-            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/msig.png" alt="MSIG" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">MSIG</span></div>
-            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/lonpac.jpg" alt="Lonpac" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Lonpac</span></div>
+            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/msig.png" alt="MSIG" class="ip-logo ip-xl" onerror="this.remove();"><span class="ip-name">MSIG</span></div>
+            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/lonpac.jpg" alt="Lonpac" class="ip-logo ip-xl" onerror="this.remove();"><span class="ip-name">Lonpac</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/progressive.png" alt="Progressive Insurance" class="ip-logo" onerror="this.remove();"><span class="ip-name">Progressive Insurance</span></div>
-            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/pacific-insurance.jpg" alt="Pacific Insurance" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Pacific Insurance</span></div>
+            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md"><img src="../assets/insurers/pacific-insurance.jpg" alt="Pacific Insurance" class="ip-logo ip-xl" onerror="this.remove();"><span class="ip-name">Pacific Insurance</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/etiqa.png" alt="" class="ip-logo" onerror="this.remove();"><span class="ip-name">Etiqa</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/generali.png" alt="" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Generali</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/rhb.png" alt="" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">RHB Insurance</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/allianz.png" alt="" class="ip-logo" onerror="this.remove();"><span class="ip-name">Allianz</span></div>
-            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/takaful-malaysia.png" alt="" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Takaful Malaysia</span></div>
+            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/takaful-malaysia.png" alt="" class="ip-logo ip-xl" onerror="this.remove();"><span class="ip-name">Takaful Malaysia</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/pacific-orient.png" alt="" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Pacific &amp; Orient</span></div>
-            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/msig.png" alt="" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">MSIG</span></div>
-            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/lonpac.jpg" alt="" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Lonpac</span></div>
+            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/msig.png" alt="" class="ip-logo ip-xl" onerror="this.remove();"><span class="ip-name">MSIG</span></div>
+            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/lonpac.jpg" alt="" class="ip-logo ip-xl" onerror="this.remove();"><span class="ip-name">Lonpac</span></div>
             <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/progressive.png" alt="" class="ip-logo" onerror="this.remove();"><span class="ip-name">Progressive Insurance</span></div>
-            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/pacific-insurance.jpg" alt="" class="ip-logo ip-lg" onerror="this.remove();"><span class="ip-name">Pacific Insurance</span></div>
+            <div class="ip-cell shrink-0 flex flex-col items-center justify-center gap-2 h-28 w-44 rounded-xl border border-slate-200 bg-white px-4 shadow-sm transition-shadow duration-300 hover:shadow-md" aria-hidden="true"><img src="../assets/insurers/pacific-insurance.jpg" alt="" class="ip-logo ip-xl" onerror="this.remove();"><span class="ip-name">Pacific Insurance</span></div>
           </div>
         </div>
       </div>
@@ -792,11 +787,7 @@
         <!-- Brand -->
         <div>
           <div class="flex items-center gap-3 text-white">
-            <svg viewBox="0 0 100 100" class="h-11 w-11 shrink-0" role="img" aria-label="Wayson Auto logo">
-              <circle cx="50" cy="50" r="48" fill="#15233F" />
-              <circle cx="50" cy="50" r="45" fill="none" stroke="#F5A623" stroke-width="4" />
-              <path d="M24 33 L36 69 L50 35 L64 69 L76 33" fill="none" stroke="#F5A623" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
-            </svg>
+            <img src="../assets/wayson.jpeg" alt="Wayson Auto logo" class="h-11 w-11 shrink-0 rounded-full object-cover" />
             <span>
               <span class="block font-heading font-bold text-lg leading-tight">Wayson Auto Sdn Bhd</span>
               <span class="block text-sm text-slate-400">威勝汽車有限公司</span>
