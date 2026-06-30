@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://netheraug.github.io/WebProject-WaysonAuto/sitemap.xml
